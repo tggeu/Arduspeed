@@ -1,24 +1,13 @@
 #include <Messenger.h>
 #include <Servo.h>
 #include <LiquidCrystal.h>
-
-#define SPEED_SERVO_PIN 2
+#define SPEED_SERVO_PIN 6
 #define SPEED_SERVO_0_US 2800
 #define SPEED_SERVO_200_US 870
 
-#define LCD_RS_PIN 6
-#define LCD_E_PIN 7
-#define LCD_D4_PIN 8
-#define LCD_D5_PIN 9
-#define LCD_D6_PIN 10
-#define LCD_D7_PIN 11
-#define LCD_LINES 2
-#define LCD_ROWS 16
-
 Servo hand;
 Messenger message;
-LiquidCrystal lcd(LCD_RS_PIN, LCD_E_PIN, LCD_D4_PIN,
-                  LCD_D5_PIN, LCD_D6_PIN, LCD_D7_PIN);
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
 void sendVersion()
 {
@@ -250,10 +239,10 @@ void serialEvent()
 
 void setup()
 {
-  hand.attach(2);
+  hand.attach(6);
   Serial.begin(19200);
   message.attach(onMessage);
-  lcd.begin(LCD_ROWS, LCD_LINES);
+lcd.begin(16,2);
   createChars();
 
   setSpeedServo(0);
